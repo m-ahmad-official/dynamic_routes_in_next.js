@@ -42,7 +42,7 @@ export default function CountryName({
       (country) => country.name.toLowerCase() === country_url.toLowerCase()
     );
   }
-  let result = findCountry(params.country_name);
+  const result = findCountry(params.country_name);
 
   return (
     <body style={{ backgroundColor: "#E4FDE1" }}>
