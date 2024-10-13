@@ -1,45 +1,48 @@
-"use client"; // Add this to mark the file as a Client Component
-
-import React from "react";
-import { useParams } from "next/navigation"; // Import useParams from next/navigation
 import Navbar from "@/components/Navbar";
 
-// Define the type for each country
-type Country = {
-  name: string;
-  population: string;
-  capital: string;
-};
+export default function CountryName({
+  params,
+}: {
+  params: { country_name: string };
+}) {
+  const countries: {
+    name: string;
+    population: string;
+    capital: string;
+  }[] = [
+    {
+      name: "Pakistan",
+      population: "235.8 million",
+      capital: "Islamabad",
+    },
+    {
+      name: "Australia",
+      population: "26 million",
+      capital: "Canberra",
+    },
+    {
+      name: "Turkey",
+      population: "84.98 million",
+      capital: "Ankara",
+    },
+    {
+      name: "Russia",
+      population: "144.2 million",
+      capital: "Moscow",
+    },
+    {
+      name: "Qatar",
+      population: "2.6 million",
+      capital: "Doha",
+    },
+  ];
 
-// Define the countries object with an index signature
-const countries: Record<string, Country> = {
-  pakistan: {
-    name: "Pakistan",
-    population: "235.8 million",
-    capital: "Islamabad",
-  },
-  australia: {
-    name: "Australia",
-    population: "26 million",
-    capital: "Canberra",
-  },
-  turkey: { name: "Turkey", population: "84.98 million", capital: "Ankara" },
-  russia: { name: "Russia", population: "144.2 million", capital: "Moscow" },
-  qatar: {
-    name: "Qatar",
-    population: "2.6 million",
-    capital: "Doha",
-  },
-};
-
-export default function CountryDetails() {
-  const params = useParams(); // Use useParams to get the dynamic route parameter
-  const country_name = Array.isArray(params.country_name)
-    ? params.country_name[0] // Use the first element if it's an array
-    : params.country_name; // Otherwise, it's a string
-
-  // Convert the country_name to lowercase if it's a string
-  const country = countries[country_name?.toLowerCase() as string];
+  function findCountry(country_url: string) {
+    return countries.find(
+      (country) => country.name.toLowerCase() === country_url.toLowerCase()
+    );
+  }
+  let result = findCountry(params.country_name);
 
   return (
     <body style={{ backgroundColor: "#E4FDE1" }}>
@@ -58,14 +61,14 @@ export default function CountryDetails() {
           boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.5)",
         }}
       >
-        {country ? (
-          <div style={{}}>
-            <h1 style={{ padding: "5px" }}>Name: {country.name}</h1>
-            <p style={{ padding: "5px" }}>Population: {country.population}</p>
-            <p style={{ padding: "5px" }}>Capital: {country.capital}</p>
+        {result ? (
+          <div>
+            <h1 style={{ padding: "5px" }}>Name: {result.name}</h1>
+            <h1 style={{ padding: "5px" }}>Population: {result.population}</h1>
+            <h1 style={{ padding: "5px" }}>Capital: {result.capital}</h1>
           </div>
         ) : (
-          <h1>Country not found</h1>
+          <h1>Country Not Find</h1>
         )}
       </div>
     </body>
