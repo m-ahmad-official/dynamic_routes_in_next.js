@@ -10,32 +10,32 @@ export default function CountryName({
     population: string;
     capital: string;
   }[] = [
-    {
-      name: "Pakistan",
-      population: "235.8 million",
-      capital: "Islamabad",
-    },
-    {
-      name: "Australia",
-      population: "26 million",
-      capital: "Canberra",
-    },
-    {
-      name: "Turkey",
-      population: "84.98 million",
-      capital: "Ankara",
-    },
-    {
-      name: "Russia",
-      population: "144.2 million",
-      capital: "Moscow",
-    },
-    {
-      name: "Qatar",
-      population: "2.6 million",
-      capital: "Doha",
-    },
-  ];
+      {
+        name: "Pakistan",
+        population: "235.8 million",
+        capital: "Islamabad",
+      },
+      {
+        name: "Australia",
+        population: "26 million",
+        capital: "Canberra",
+      },
+      {
+        name: "Turkey",
+        population: "84.98 million",
+        capital: "Ankara",
+      },
+      {
+        name: "Russia",
+        population: "144.2 million",
+        capital: "Moscow",
+      },
+      {
+        name: "Qatar",
+        population: "2.6 million",
+        capital: "Doha",
+      },
+    ];
 
   function findCountry(country_url: string) {
     return countries.find(
@@ -68,7 +68,7 @@ export default function CountryName({
             <h1 style={{ padding: "5px" }}>Capital: {result.capital}</h1>
           </div>
         ) : (
-          <h1>Country Not Find</h1>
+          <h1>Country Not Found</h1>
         )}
       </div>
     </body>
